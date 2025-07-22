@@ -1,7 +1,11 @@
 # Python
 __pycache__/
-*.pyc
+*.py[cod]
 .env
+.venv/
+venv/
+instance/
+*.pyc
 
 # Node/React
 node_modules/
@@ -10,3 +14,31 @@ dist/
 
 # VSCode
 .vscode/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs and misc
+*.log
+*.sqlite3
+*.sqlite3-journal
+
+# Test & cache files
+.pytest_cache/
+.mypy_cache/
+coverage.*
+.cache
+
+# Notebooks
+.ipynb_checkpoints
+
+# Virtual envs
+env/
+ENV/
+.envrc
+
+# Tools
+.pdm-python
+.ruff_cache/
+.site/
