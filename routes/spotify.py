@@ -49,10 +49,7 @@ def callback():
 
     if "access_token" in token_data:
         access_token = token_data["access_token"]
-        return jsonify({
-            "message" : "Access token received successfully!",
-            "access_token" : access_token,
-        })
+        return redirect(f"http://localhost:3000?token={access_token}")
     else:
         return jsonify({
             "error" : "Failed to retrieve access token",

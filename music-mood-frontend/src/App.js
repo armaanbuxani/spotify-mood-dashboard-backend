@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import Login from './Login';
 import MoodPieChart from './components/MoodPieChart'
 
 function App() {
+  const [accesstoken, setAccessToken] = useState('');
   const [tracks, setTracks] = useState([]);
   const [error, setError] = useState('');
   const [activeLyrics, setActiveLyrics] = useState(null);
@@ -12,7 +14,21 @@ function App() {
   const [loadingMood, setLoadingMood] = useState(false);
   const [overallMood, setOverallMood] = useState('');
 
-  const accesstoken = "BQBrjpbcmlpxrzb2Peqv6iTp7z5fXFqDKEaELN_h-8LM87iE87R_JH_zwWPXfxl-TjXudc7549qTTuDBkh6mmJP9AZfzNWaBZMN4CoZtIaDnf8vQDZ7qJICDpEEo0HbGZtU3cXi2g4JCZ-W1B0h7_88baDg_QN5yTRBJnHq1Ch-D_wWXe1igxiecupX9vjOh4kNxGTCGlO4X0Q4hMTDE5LstY4cQSH9AJZi1tDzvcpiP75JpygdAkg"
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const tokenFromUrl = params.get('token');
+
+    if (tokenFromUrl && !accesstoken) {
+      localStorage.setItem('spotify_access_token', tokenFromUrl);
+      setAccessToken(tokenFromUrl);
+      window.history.replaceState({}, document.title, '/'); // clean URL
+    } else {
+      const storedToken = localStorage.getItem('spotify_access_token');
+      if (storedToken) {
+        setAccessToken(storedToken);
+      }
+    }
+  }, []);
 
   useEffect(() => {
     if (!accesstoken) return;
@@ -128,6 +144,10 @@ function App() {
 
     setLoadingMood(false);
   };
+
+  if (!accesstoken) {
+    return <Login />
+  }
 
   return (
     <div style={{
