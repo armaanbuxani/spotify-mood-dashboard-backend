@@ -2,7 +2,7 @@ import React from 'react';
 
 function login() {
     const handleLogin = () => {
-        window.location.href = 'http://localhost:5000/login'; // Update later
+        window.location.href = 'https://music-mood-dashboard.onrender.com/login'; // Update later
     };
 
     return (

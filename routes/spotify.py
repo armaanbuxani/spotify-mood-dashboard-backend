@@ -8,6 +8,7 @@ spotify_bp = Blueprint('spotify', __name__)
 SPOTIFY_CLIENT_ID = os.getenv("SPOTIFY_CLIENT_ID")
 SPOTIFY_CLIENT_SECRET = os.getenv("SPOTIFY_CLIENT_SECRET")
 REDIRECT_URI = os.getenv("REDIRECT_URI")
+FRONTEND_URL = os.getenv("FRONTEND_URL")
 
 @spotify_bp.route('/login')
 def login():
@@ -49,7 +50,7 @@ def callback():
 
     if "access_token" in token_data:
         access_token = token_data["access_token"]
-        return redirect(f"http://localhost:3000?token={access_token}")
+        return redirect(f"{FRONTEND_URL}?token={access_token}")
     else:
         return jsonify({
             "error" : "Failed to retrieve access token",

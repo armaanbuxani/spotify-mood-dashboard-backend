@@ -33,7 +33,7 @@ function App() {
   useEffect(() => {
     if (!accesstoken) return;
 
-    axios.get(`http://localhost:5000/top-tracks?access_token=${accesstoken}`)
+    axios.get(`https://music-mood-dashboard.onrender.com/top-tracks?access_token=${accesstoken}`)
       .then((res) => {
         setTracks(res.data.tracks)
       })
@@ -52,7 +52,7 @@ function App() {
 
     setLoadingLyrics(true);
     try {
-      const res = await axios.get(`http://localhost:5000/lyrics?track=${encodeURIComponent(track)}&artist=${encodeURIComponent(artist)}`);
+      const res = await axios.get(`https://music-mood-dashboard.onrender.com/lyrics?track=${encodeURIComponent(track)}&artist=${encodeURIComponent(artist)}`);
       setActiveLyrics({
         track,
         artist,
@@ -79,7 +79,7 @@ function App() {
         tracks.map(async (track) => {
           try {
             const res = await axios.get(
-              `http://localhost:5000/lyrics?track=${encodeURIComponent(track.name)}&artist=${encodeURIComponent(track.artist)}`
+              `https://music-mood-dashboard.onrender.com/lyrics?track=${encodeURIComponent(track.name)}&artist=${encodeURIComponent(track.artist)}`
             );
             return {
               track,
@@ -108,7 +108,7 @@ function App() {
           }
 
           try {
-            const moodRes = await axios.post("http://localhost:5000/analyze-mood", {
+            const moodRes = await axios.post("https://music-mood-dashboard.onrender.com/analyze-mood", {
               lyrics,
             });
 
@@ -133,7 +133,7 @@ function App() {
       setMoodSummaries(moodResults);
 
       const allSummaries = moodResults.map((m) => m.summary);
-      const res = await axios.post("http://localhost:5000/overall-mood", {
+      const res = await axios.post("https://music-mood-dashboard.onrender.com/overall-mood", {
         summaries: allSummaries,
       });
       setOverallMood(res.data.overall_mood);
