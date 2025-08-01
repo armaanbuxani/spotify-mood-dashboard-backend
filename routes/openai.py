@@ -36,6 +36,8 @@ Lyrics:
             ]
         )
 
+        print("OpenAI raw response:", response.choices[0].message.content.strip())
+
         raw = response.choices[0].message.content.strip()
 
         try:
@@ -71,6 +73,8 @@ def overall_mood():
                 {"role": "user", "content": prompt} 
             ]
         )
+
+        print("OpenAI raw response:", response.choices[0].message.content.strip())
 
         overall = response.choices[0].message.content.strip()
 

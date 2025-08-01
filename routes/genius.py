@@ -50,6 +50,7 @@ def genius_search():
 
     
 def scrape_lyrics_from_url(url):
+    print("Scraping lyrics from:", url)
     try:
         page = requests.get(url)
         soup = BeautifulSoup(page.text, "html.parser")
@@ -70,5 +71,5 @@ def scrape_lyrics_from_url(url):
         return lyrics.strip()
 
     except Exception as e:
-        print(f"Scraping error: {e}")
+        print("Scraping error:", e)
         return None
