@@ -52,7 +52,9 @@ def genius_search():
 def scrape_lyrics_from_url(url):
     print("Scraping lyrics from:", url)
     try:
-        page = requests.get(url)
+        SCRAPER_API_KEY = os.getenv("SCRAPER_API_KEY")
+        proxy_url = f"https://api.scraperapi.com/?api_key={SCRAPER_API_KEY}&url={url}"
+        page = requests.get(proxy_url)
         soup = BeautifulSoup(page.text, "html.parser")
 
         lyrics_divs = soup.find_all("div", attrs={"data-lyrics-container": "true"})
