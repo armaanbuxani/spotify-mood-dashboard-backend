@@ -20,8 +20,10 @@ def analyze_mood():
         prompt = prompt = f"""Please analyze the following song lyrics and respond in this exact JSON format:
 {{
   "summary": "<one-sentence mood summary>",
-  "tag": "<choose one from: happy, sad, angry, relaxed, energetic, melancholic>"
+  "tag": "STRICTLY <choose one from: happy, sad, angry, relaxed, energetic, melancholic, unknown>"
 }}
+
+DO NOT invent or use any tags outside this list. If unsure, pick the closest valid option.
 
 Lyrics:
 {lyrics}
