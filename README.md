@@ -2,12 +2,13 @@
 
 This is the Flask backend for the [Spotify Mood Dashboard](https://github.com/armaanbuxani/music-mood-frontend), a full-stack web app that uses AI to generate mood summaries based on a user’s top 20 Spotify tracks.
 
-It handles:
-- Spotify OAuth + access token processing
-- Fetching top 20 tracks from Spotify
-- Extracting lyrics using Genius (via ScraperAPI)
-- Running sentiment analysis with OpenAI
-- Generating mood summaries (overall + per track)
+---
+
+## About the Project
+
+The Spotify Mood Dashboard is an AI-powered web app that analyzes the mood of your top Spotify tracks.  
+This backend, built with Flask, handles Spotify authentication, lyric extraction, and mood analysis.  
+It enables music lovers to visualize how their listening habits reflect their emotions, all in one elegant AI-powered dashboard.
 
 ---
 
@@ -20,6 +21,8 @@ It handles:
 - ScraperAPI (for Genius lyrics)
 - Docker (optional)
 - Deployed on Render
+
+>This backend mirrors a real-world AI architecture — from third-party data ingestion (Spotify + Genius) to NLP-based mood classification with OpenAI, all integrated via a Python-based REST API.
 
 ---
 
@@ -76,3 +79,14 @@ docker run -p 5000:5000 --env-file .env music-mood-backend
 | GET    | `/lyrics`          | Retrieves lyrics for a given track and artist |
 | POST   | `/analyze-mood`    | Analyzes mood based on provided lyrics       |
 | POST   | `/overall-mood`    | Generates overall mood summary from tracks   |
+
+---
+
+## Deployment 
+
+This backend is deployed on Render at:
+https://music-mood-backend.onrender.com
+
+>**Note**: Due to Spotify’s developer account limitations, the hosted app may require you to be added as a registered user.
+>
+>If you'd like access for demo purposes, please reach out or fork the project and run it locally using the setup above.
