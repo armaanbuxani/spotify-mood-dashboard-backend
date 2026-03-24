@@ -2,8 +2,6 @@ from flask import Blueprint, request, jsonify
 from openai import OpenAI
 import os
 import json
-import asyncio
-import httpx
 
 openai_bp = Blueprint("openai", __name__)
 
@@ -71,7 +69,7 @@ def overall_mood():
 
     try:
         client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
-        prompt = f""""Here are 20 emotional mood summaries of songs:\n\n{chr(10).join(summaries)}\n\nSummarize the overall emotional mood in one sentence."""
+        prompt = f""""Here are emotional mood summaries of songs:\n\n{chr(10).join(summaries)}\n\nSummarize the overall emotional mood in one sentence."""
 
         response = client.chat.completions.create(
             model = "gpt-3.5-turbo",
