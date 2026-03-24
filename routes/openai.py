@@ -17,16 +17,17 @@ def analyze_mood():
     
     try:
         client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
-        prompt = prompt = f"""Please analyze the following song lyrics and respond in this exact JSON format:
+        prompt = f"""Please analyze the following song lyrics and respond in this exact JSON format:
 {{
   "summary": "<one-sentence mood summary>",
-  "tag": "<choose one from: happy, sad, angry, relaxed, energetic, melancholic, unknown>"
+  "tag": "<choose one from: happy, sad, angry, relaxed, energetic, melancholic>"
 }}
 
 Rules:
 - DO NOT invent or use any tags outside the list.
 - The tag must be lowercase and match exactly one of the options.
-- If you're unsure, return "unknown".
+- You must choose the single closest tag from the list, even if the lyrics contain mixed emotions.
+- Return valid JSON only. Do not include markdown or extra text.
 
 Lyrics:
 {lyrics}
